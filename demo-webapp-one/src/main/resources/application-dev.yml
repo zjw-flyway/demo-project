@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring-boot?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+  redis:
+    cluster:
+      maxIdle: 30
+      maxWait: 1000
+      maxTotal: 30
+      nodes: 192.168.0.109:6379,192.168.0.109:6380,192.168.0.110:6379,192.168.0.110:6380,192.168.0.111:6379,192.168.0.111:6380
+  shiro:
+    session:
+      timeout: 1800
+  boot:
+    admin:
+      client:
+        url: http://localhost:18770
+        username: admin
+        password: admin@2019
+
+dubbo:
+  registry:
+    #注册中心
+    address: zookeeper://192.168.1.10:2181,192.168.1.11:2181,192.168.1.12:2181
+
+index:
+  url: www.baidu.com

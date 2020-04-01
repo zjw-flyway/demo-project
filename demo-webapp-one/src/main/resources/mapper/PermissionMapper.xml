@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.standard.demo.webapp.one.dao.PermissionDao">
+
+    <resultMap id="permissionMap" type="com.standard.demo.web.core.dto.UserDto">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <collection property="roleIdList" ofType="Integer">
+            <id column="roleId" property="roleId"/>
+        </collection>
+        <collection property="roleNameList" ofType="String">
+            <id column="roleName" property="roleName"/>
+        </collection>
+        <collection property="roleEnameList" ofType="String">
+            <id column="roleEname" property="roleEname"/>
+        </collection>
+        <collection property="menuList" ofType="String">
+            <id column="menuCode" property="menuCode"/>
+        </collection>
+        <collection property="permissionList" ofType="String">
+            <id column="permissionCode" property="permissionCode"/>
+        </collection>
+    </resultMap>
+
+    <select id="getUserPermission" resultMap="permissionMap">
+        SELECT
+            u.id              id,
+            u.nickname        nickname,
+            r.id              roleId,
+            r.role_name       roleName,
+            r.role_ename      roleEname,
+            u.username        username,
+            p.menu_code       menuCode,
+            p.permission_code permissionCode
+        FROM sys_user u
+                 LEFT JOIN sys_user_role ur on ur.user_id=u.id
+                 LEFT JOIN sys_role r ON r.id = ur.role_id
+                 LEFT JOIN sys_role_permission rp ON ur.role_id = rp.role_id
+                 LEFT JOIN sys_permission p ON rp.permission_id = p.id AND rp.del_flag = 1
+        WHERE u.username = #{username}
+          AND u.del_flag = 1
+    </select>
+
+    <select id="listAllPermission" resultType="com.standard.demo.webapp.one.entity.Permission">
+        SELECT
+            p.id                  id,
+            p.menu_name           menuName,
+            p.permission_name     permissionName,
+            p.required_permission requiredPermission
+        FROM sys_permission p where del_flag=1
+    </select>
+</mapper>

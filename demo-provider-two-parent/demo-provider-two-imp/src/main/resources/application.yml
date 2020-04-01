@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy/MM/dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: demo-provider-two-imp
+server:
+  port: 18533
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+dubbo:
+  protocol:
+    #    协议名称
+    name: dubbo
+    port: 18534
+#    host: 192.168.2.64
+  scan:
+    base-packages: com.standard.demo.provider.two.imp.apiImp
+  version: 1.0.0
+  #  接下来的配置用于在dubbo admin中可以显示相关数据
+  metadata-report:
+    address: ${dubbo.registry.address}
+  config-center:
+    address: ${dubbo.registry.address}

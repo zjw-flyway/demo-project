@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.standard.demo.webapp.one.dao.RoleDao">
+    <update id="removeOldPermission">
+        UPDATE sys_role_permission
+        SET
+        del_flag = 2,update_time=now(),update_by=#{updateBy}
+        WHERE role_id = #{roleId}
+        AND permission_id in (
+        <foreach collection="permissions" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
+
+    <insert id="insertRole" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_role (role_name,role_ename,create_time,update_time,del_flag,create_by,update_by) values(
+        #{role.roleName},#{role.roleEname},now(),now(),1,#{role.createBy},#{role.updateBy})
+    </insert>
+</mapper>

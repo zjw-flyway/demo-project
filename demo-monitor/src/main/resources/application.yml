@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: demo-monitor
+  security:
+    user:
+      name: "admin"
+      password: "admin@2019"
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          to: abc@qq.cn
+#          from: abc@qq.cn
+#        #将查询实例连接窗台的超时信息改为5s，默认是2s
+#      monitor:
+#        connect-timeout: 5000ms
+#  mail:
+#    host: abc@qq.cn
+#    username: root
+#    password: root
+
+server:
+  port: 18770
