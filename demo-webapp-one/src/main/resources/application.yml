@@ -36,3 +36,7 @@ management:
 
 dubbo:
   version: 1.0.0
+
+admin:
+  user:
+    id: 1
