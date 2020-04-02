@@ -1,5 +1,6 @@
 package com.standard.demo.webapp.one.config.exception;
 
+import com.standard.demo.web.core.constant.ErrorEnum;
 import com.standard.demo.web.core.entity.ResponseEntity;
 
 /**
@@ -12,6 +13,10 @@ import com.standard.demo.web.core.entity.ResponseEntity;
 public class CommonJsonException extends RuntimeException {
 
 	private ResponseEntity resultJson;
+
+	public CommonJsonException(String message) {
+		resultJson = new ResponseEntity(message, ErrorEnum.E_10000.getErrorCode());
+	}
 
 	public ResponseEntity getResultJson() {
 		return resultJson;

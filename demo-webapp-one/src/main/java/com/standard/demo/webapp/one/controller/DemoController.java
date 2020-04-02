@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.standard.demo.web.core.entity.ResponseEntity;
+import com.standard.demo.web.core.utils.CommonUtil;
 import com.standard.demo.webapp.one.service.DemoService;
 
 import io.swagger.annotations.Api;
@@ -73,5 +74,16 @@ public class DemoController {
 	@ApiOperation("测试多并发")
 	public String getTwo() {
 		return demoService.demoSynchronized("123");
+	}
+
+	/**
+	 * 异常测试
+	 * @return
+	 */
+	@GetMapping("/demoException")
+	public ResponseEntity demoException() {
+		int a = 0;
+		int b = 1 / a;
+		return CommonUtil.successJson();
 	}
 }
