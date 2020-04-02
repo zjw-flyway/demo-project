@@ -10,4 +10,8 @@ public interface DemoService {
 	String sayHello(String name);
 
 	String demoSynchronized(String name);
+
+	String demoCache(String name);
+
+	String demoOneCache(String name);
 }

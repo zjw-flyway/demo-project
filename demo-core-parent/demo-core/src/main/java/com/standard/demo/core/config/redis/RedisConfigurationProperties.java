@@ -18,6 +18,9 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "spring.redis.cluster")
 public class RedisConfigurationProperties {
 
+	/**
+	 * redis集群链接
+	 */
 	private List<String> nodes = new ArrayList<>();
 
 	/**

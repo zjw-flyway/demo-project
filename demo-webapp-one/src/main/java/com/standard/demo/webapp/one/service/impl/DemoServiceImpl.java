@@ -1,10 +1,13 @@
 package com.standard.demo.webapp.one.service.impl;
 
+import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
 import com.standard.demo.provider.one.api.api.DemoOneApi;
 import com.standard.demo.webapp.one.service.DemoService;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.stereotype.Service;
 
 /**
  * @Description
@@ -34,5 +37,16 @@ public class DemoServiceImpl implements DemoService {
 		}
 		log.info("结束demoSynchronized");
 		return name;
+	}
+
+	@Override
+	@Cacheable(value = "demoCache")
+	public String demoCache(String name) {
+		return name;
+	}
+
+	@Override
+	public String demoOneCache(String name) {
+		return demoApi.demoCache(name);
 	}
 }

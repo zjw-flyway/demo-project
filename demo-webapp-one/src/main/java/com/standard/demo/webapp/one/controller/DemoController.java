@@ -86,4 +86,14 @@ public class DemoController {
 		int b = 1 / a;
 		return CommonUtil.successJson();
 	}
+
+	/**
+	 * 测试缓存
+	 * @param name
+	 * @return
+	 */
+	@GetMapping("/demoCache")
+	public ResponseEntity demoCache(String name) {
+		return new ResponseEntity(demoService.demoOneCache(name) + ":" + demoService.demoCache(name));
+	}
 }

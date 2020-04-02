@@ -8,4 +8,6 @@ package com.standard.demo.provider.one.api.api;
 public interface DemoOneApi {
 
 	String sayHello(String name);
+
+	String demoCache(String name);
 }
