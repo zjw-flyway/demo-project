@@ -95,4 +95,12 @@ public class RedisSessionDao extends EnterpriseCacheSessionDAO {
 			log.error("doDelete删除session失败，原因为：", e);
 		}
 	}
+
+	/**
+	 * 得到shiroTime
+	 * @return
+	 */
+	public Integer getShiroTimeout() {
+		return shiroTimeout;
+	}
 }

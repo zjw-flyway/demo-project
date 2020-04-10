@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.Filter;
 
-import com.standard.demo.web.core.shiro.RedisSessionDao;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -18,6 +17,8 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+
+import com.standard.demo.web.core.shiro.RedisSessionDao;
 
 /**
  * @author: zjw
@@ -57,7 +58,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/webjars/springfox-swagger-ui/**", "anon");
 
 		//允许springboot admin访问
-		filterChainDefinitionMap.put("/actuator/**","anon");
+		filterChainDefinitionMap.put("/actuator/**", "anon");
 
 		filterChainDefinitionMap.put("/demo/**", "anon");
 		filterChainDefinitionMap.put("/**", "authc");
@@ -69,6 +70,7 @@ public class ShiroConfiguration {
 	public SessionManager sessionManager() {
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
 		sessionManager.setSessionDAO(redisSessionDao());
+		sessionManager.setGlobalSessionTimeout(redisSessionDao().getShiroTimeout() * 1000);
 		return sessionManager;
 	}
 
