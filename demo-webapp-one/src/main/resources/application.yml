@@ -14,7 +14,6 @@ server:
     session:
       cookie:
         name: demo-webapp-one
-      timeout: 60m
     context-path: /demo-webapp-one/
   use-forward-headers: true
 
