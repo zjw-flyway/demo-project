@@ -1,27 +1,26 @@
 package com.standard.demo.webapp.one.config.exception;
 
-import com.alibaba.fastjson.JSONObject;
-import com.standard.demo.web.core.constant.ErrorEnum;
-import com.standard.demo.web.core.entity.ResponseEntity;
-import com.standard.demo.web.core.utils.CommonUtil;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
+import com.alibaba.fastjson.JSONObject;
+import com.standard.demo.web.core.constant.ErrorEnum;
+import com.standard.demo.web.core.entity.ResponseEntity;
+import com.standard.demo.web.core.utils.CommonUtil;
 
 /**
  * @author: zjw
  * @description: 统一异常拦截
  * @date: 2020/03/20 10:31
  */
-@ControllerAdvice
-@ResponseBody
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
